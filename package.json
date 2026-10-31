@@ -6,6 +6,21 @@
   "description": "Claude Code plugin that appends user-defined content to Claude's system context.",
   "license": "MIT",
   "scripts": {
-    "test": "node --test test/"
+    "test": "bun test",
+    "lint": "bun --bun eslint .",
+    "typecheck": "tsc",
+    "check": "bun run lint && bun run typecheck && bun test"
+  },
+  "devDependencies": {
+    "@eslint/json": "^2.1.1",
+    "@eslint/markdown": "^8.0.3",
+    "@tuomashatakka/eslint-config": "^4.2.0",
+    "@types/bun": "^1.4.4",
+    "@typescript/native": "npm:typescript@^7.0.2",
+    "eslint": "^10.14.0",
+    "typescript": "npm:@typescript/typescript6@^6.0.2"
+  },
+  "engines": {
+    "bun": ">=1.2.0"
   }
 }

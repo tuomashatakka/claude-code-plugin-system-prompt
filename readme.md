@@ -4,13 +4,13 @@ Appends your own instructions to Claude's context at the start of every Claude C
 
 ## Install
 
-```
+```text
 /plugin install system-prompt --marketplace tuomashatakka/claude-code-plugin-system-prompt
 ```
 
 From a local checkout:
 
-```
+```text
 /plugin marketplace add /path/to/claude-code-plugin-system-prompt
 /plugin install system-prompt@system-prompt-extension
 ```
@@ -69,19 +69,29 @@ If a configured file is missing, the hook writes a warning to stderr and goes on
 
 If you need a true system-prompt replacement for a single run, Claude Code's `--append-system-prompt` / `--system-prompt` CLI flags do that. This plugin is for instructions you want in every session without typing flags.
 
+## Requirements
+
+The hook runs on [Bun](https://bun.sh) (`bun` must be on your `PATH`).
+
 ## Development
 
-The hook is a single dependency-free Node script at `hooks/inject.mjs`.
+The hook is a single dependency-free TypeScript file at `hooks/inject.ts`, run directly by Bun.
 
-```
-npm test                  # node --test
+```sh
+bun install
+bun test                  # bun:test
+bun run typecheck         # tsc (TypeScript 7)
+bun run lint              # ESLint, run under Bun with eslint.config.ts
+bun run check             # all of the above
 claude plugin validate .
 ```
 
+TypeScript is installed side by side, as recommended for TypeScript 7: `@typescript/native` provides the `tsc` 7 compiler, and `typescript` is aliased to `@typescript/typescript6` so typescript-eslint keeps the TypeScript 6 API it needs.
+
 Try the hook by hand:
 
-```
-echo '{"cwd":"'"$PWD"'"}' | CLAUDE_PLUGIN_OPTION_PROMPT='Be terse.' node hooks/inject.mjs SessionStart
+```sh
+echo '{"cwd":"'"$PWD"'"}' | CLAUDE_PLUGIN_OPTION_PROMPT='Be terse.' bun hooks/inject.ts SessionStart
 ```
 
 ## License
