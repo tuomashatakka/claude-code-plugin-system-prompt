@@ -1,0 +1,12 @@
+{
+  "name": "system-prompt-extension",
+  "description": "Append user-defined content to Claude Code's system context.",
+  "owner": { "name": "tuomashatakka" },
+  "plugins": [
+    {
+      "name": "system-prompt",
+      "source": ".",
+      "description": "Appends your own instructions to Claude's system context, configured from Claude Code settings."
+    }
+  ]
+}

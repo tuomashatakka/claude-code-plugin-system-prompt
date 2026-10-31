@@ -1,0 +1,20 @@
+{
+  "description": "system-prompt: append user-defined content to Claude's system context",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|clear|compact",
+        "hooks": [
+          { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/inject.mjs\" SessionStart", "timeout": 5 }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/inject.mjs\" UserPromptSubmit", "timeout": 5 }
+        ]
+      }
+    ]
+  }
+}

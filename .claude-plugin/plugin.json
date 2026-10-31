@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "system-prompt",
+  "displayName": "System Prompt Extension",
+  "version": "0.1.0",
+  "description": "Appends your own instructions to Claude's system context at the start of every session, configured from Claude Code settings.",
+  "author": {
+    "name": "tuomashatakka",
+    "email": "tuomas.hatakka@gmail.com",
+    "url": "https://github.com/tuomashatakka"
+  },
+  "repository": "https://github.com/tuomashatakka/claude-code-plugin-system-prompt",
+  "license": "MIT",
+  "keywords": ["system prompt", "instructions", "context", "hooks", "config"],
+  "userConfig": {
+    "enabled": {
+      "type": "boolean",
+      "title": "Enabled",
+      "description": "Inject the configured content. Turn off to keep the settings but stop injecting.",
+      "default": true
+    },
+    "prompt": {
+      "type": "string",
+      "title": "Prompt text",
+      "description": "Text appended to Claude's system context. Write \\n for a line break.",
+      "default": ""
+    },
+    "prompt_file": {
+      "type": "string",
+      "title": "Prompt file",
+      "description": "Path to a file whose contents are appended after the prompt text. ~ expands to your home; relative paths resolve against the project directory. Several paths can be separated with commas.",
+      "default": ""
+    },
+    "every_prompt": {
+      "type": "boolean",
+      "title": "Repeat on every prompt",
+      "description": "Also re-inject the content with each message you send, for stronger adherence in long sessions. Costs tokens on every turn.",
+      "default": false
+    }
+  }
+}
