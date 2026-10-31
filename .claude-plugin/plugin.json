@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "system-prompt",
   "displayName": "System Prompt Extension",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Appends your own instructions to Claude's system context at the start of every session, configured from Claude Code settings.",
   "author": {
     "name": "tuomashatakka",
@@ -36,6 +36,30 @@
       "title": "Repeat on every prompt",
       "description": "Also re-inject the content with each message you send, for stronger adherence in long sessions. Costs tokens on every turn.",
       "default": false
+    },
+    "model_routing": {
+      "type": "boolean",
+      "title": "Route subagents by task",
+      "description": "Tell Claude to pick the cheapest model that fits each subagent task (haiku for search and reading, sonnet for implementation and review, your own model only for the hardest work).",
+      "default": true
+    },
+    "explore_model": {
+      "type": "string",
+      "title": "Explore subagent model",
+      "description": "Default model for the built-in Explore subagent: an alias (haiku, sonnet, opus) or a full model ID. \"off\" keeps the built-in. Applies from the next session.",
+      "default": "haiku"
+    },
+    "plan_model": {
+      "type": "string",
+      "title": "Plan subagent model",
+      "description": "Default model for the built-in Plan subagent. \"off\" keeps the built-in. Applies from the next session.",
+      "default": "sonnet"
+    },
+    "general_model": {
+      "type": "string",
+      "title": "general-purpose subagent model",
+      "description": "Default model for the built-in general-purpose subagent. \"off\" keeps the built-in. Applies from the next session.",
+      "default": "sonnet"
     }
   }
 }
